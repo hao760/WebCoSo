@@ -1,0 +1,84 @@
+﻿@{
+    Layout = null;
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    @model WebApplication1.Models.TaiKhoanKhachHang
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="~/assest/Codethuan/cssThuan/cssFormLogin.css">
+    <title>Đăng ký tài khoản</title>
+    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">*@
+    <link href="~/assest/min.css" rel="stylesheet">
+
+</head>
+<body>
+    <h4 style="color:red; text-align:center"> @ViewBag.Thongbao</h4>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                    <div class="card border-0 shadow rounded-3 my-5">
+                        <div class="card-body p-4 p-sm-5">
+                            <h5 style="font-size:40px" class="card-title text-center mb-5 fw-light  ">Đăng Ký</h5>
+                            <form>
+                                <div class="form-floating mb-3">
+                                    @Html.TextBoxFor(s => s.Email, new { @class = "form-control form-control-user", @placeholder = "Nhập Email" })
+                                    <label for="floatingInput">Email address</label>
+                                    @ViewData["Loil"]
+                                </div>
+                                <div class="form-floating mb-3">
+                                    @Html.PasswordFor(s => s.MatKhau, new { @id = "floatingPassword", @class = "form-control form-control-user anpass", @placeholder = "Mật khẩu" })
+                                    <label for="floatingPassword">Password</label>
+                                    @ViewData["Loi2"]
+                                </div>
+                                <div class="form-floating mb-3">
+                                    @Html.TextBoxFor(s => s.TenHienThi, new { @id = "floatingPassword", @class = "form-control form-control-user ", @placeholder = "TenHienthi" })
+                                    <label for="floatingPassword">Tên hiển thị</label>
+                                    
+                                </div>
+
+                                <div class="form-check mb-3">
+                                    <div class="custom-control custom-checkbox ">
+                                        <input type="checkbox" class="custom-control-input btn-lg" id="customCheck">
+                                        <label class="custom-control-label" for="customCheck">
+                                            Hiện mật khẩu
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
+                                        Đăng ký
+                                    </button>
+                                </div>
+                                <hr class="my-4">
+                                <p>Đã có tài khoản ? @Html.ActionLink("Đăng nhập tại đây", "DangNhap", "Nguoidung")</p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <script src="~/assest/Codethuan/JSthuan/JSDangNhapKi.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>*@
+
+</body>
+</html>
+
+
+
+
+
+
+
+

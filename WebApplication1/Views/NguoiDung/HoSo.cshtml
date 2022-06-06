@@ -1,0 +1,88 @@
+﻿
+@{
+    Layout = null;
+}
+@model WebApplication1.Models.KhachHang
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Thông tin khách hàng</title>
+    @*<link href="~/reset_password/style.css" rel="stylesheet" />*@
+
+    <link rel="stylesheet" href="~/assest/Codethuan/cssThuan/cssFormLogin.css">
+    <link href="~/assest/min.css" rel="stylesheet">
+
+</head>
+<body>
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                    <div class="card border-0 shadow rounded-3 my-5">
+                        <div class="card-body p-4 p-sm-5">
+                            <h5 style="font-size:40px" class="card-title text-center mb-5 fw-light  ">Thông tin khách hàng</h5>
+                            <form>
+                                <div class="form-floating mb-4">
+                                    @Html.TextBoxFor(s => s.TenKhachHang, new { @class = "form-control form-control-user", @placeholder = "Tên khách hàng" })
+                                    <label for="floatingInput">Tên khách hàng</label>
+                                    @ViewData["Loil"]
+                                </div>
+                                <div class="form-floating mb-4">
+                                    @Html.TextBoxFor(s => s.GioiTinh, new { @id = "form-control form-control-user", @class = "form-control form-control-user anpass", @placeholder = "Giới tính" })
+                                    <label for="floatingPassword">GioiTinh</label>
+                                </div>
+                                <div class="form-floating mb-5">
+                                    @Html.TextBoxFor(s => s.Email, new { @id = "form-control form-control-user", @class = "form-control form-control-user", @placeholder = "Email" })
+                                    <label for="floatingPassword">Email</label>
+                                </div>
+
+                                
+                                <div class="d-grid">
+                                    <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
+                                        Cập nhật thông tin
+                                    </button>
+                                </div>
+                                <hr class="my-4">
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+
+
+
+
+
+
+
+
+    @*<div class="elelment">
+        <div class="element-main">
+            <h4 style="color:green; text-align:center"> @ViewBag.Message</h4>
+            <h3>Nhập mã nhận được từ gmail</h3>
+            @using (Html.BeginForm())
+            {
+                @Html.TextBoxFor(m => m.TenKhachHang );
+                @Html.TextBoxFor(m => m.GioiTinh);
+                @Html.TextBoxFor(m => m.Email, new { @*disabled = "disabled", @readonly = "readonly" });
+
+                <input type="submit" value="Noop ho so">
+
+            }
+
+
+        </div>
+    </div>*@
+</body>
+</html>

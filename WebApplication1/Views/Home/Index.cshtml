@@ -1,0 +1,78 @@
+﻿@*@model List<WebApplication1.Models.HangHoa>*@
+@using WebApplication1.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<HangHoa>
+
+
+    @{ 
+        Layout = "~/Views/Shared/_LayoutSanPham.cshtml";
+    }
+
+
+                
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*<title>Document</title>*@
+    <title>Trang chủ</title>
+   <link href="~/assest/css/FormListSp/styleList.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assest/font-awe.js" type="text/css">
+</head>
+<body>
+    @*<div class="col-lg-9 col-md-9">*@
+        <div class="row">
+            @foreach (var sp in Model)
+            {
+                <div class="col-md-4 col-lg-4">
+                    <section style="margin-top:10px;background-color:rgba(139, 168, 211, 0.151)" class="panel">
+                        <div class="pro-img-box">
+                            <img style="width:310px ;height:220px ;" src="/ImgSanpham/@sp.AnhSanPham" alt="" />@*style="width:250px;height:220px"*@
+                            <a class="adtocart" >@*href="@Url.Action("Themvaogio","GioHang",new {@masp= @sp.MaHangHoa,@url=Request.Url.ToString() })"*@ 
+                                    <i data-id="@sp.MaHangHoa"  class="fa fa-shopping-cart"></i>
+                                    @*<i class="fa-solid fa-cart-arrow-down"></i>*@
+                                </a>
+                            </div>
+
+                            <div class="panel-body text-center">
+                                <h4>
+                                    <a style="text-decoration: none !important" href="#" class="pro-title">
+                                        @sp.TenHangHoa 
+                                    </a>
+                                </h4>
+                                <p class="price">@String.Format("{0:0,0}", @sp.GiaBan)   VND</p> @* @Convert.ToInt32(@sp.GiaBan) *@
+                            </div>
+                        </section>
+                   </div>
+                
+               
+            }
+            @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount*@
+            <div class="MenuTrang">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+
+            </div>
+            <style>
+                .MenuTrang li {
+                    display: inline;
+                    padding: 15px;
+                    margin-right:10px;
+                    background-color: #b2c9df;
+                    border: black solid 0.5px;
+                    font-size: 25px;
+                    color: white;
+                }
+                .adtocart:hover{
+                    cursor:pointer;
+                }
+            </style>
+
+
+
+            </div>
+    
+    </body>
+    </html>

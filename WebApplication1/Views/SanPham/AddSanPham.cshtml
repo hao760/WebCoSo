@@ -1,0 +1,138 @@
+﻿@model WebApplication1.Models.ViewModel
+@{
+    Layout = null;
+    ViewBag.Title = "Thêm sản phẩm";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
+
+    <link rel="stylesheet" href="~/assest/min.css" />
+
+    <link rel="stylesheet" href="~/assest/FormAddSp/templatemo-style.css">
+</head>
+<body>
+    <div class="row">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+            <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="tm-block-title d-inline-block">Add Product</h2>
+                    </div>
+                </div>
+
+@using (Html.BeginForm("AddSanPham", "SanPham",
+                                                FormMethod.Post,
+                                                new { enctype = "multipart/form-data" }))
+{
+    <div class="row tm-edit-product-row">
+        <div class="col-xl-6 col-lg-6 col-md-12">
+            <form action="" class="tm-edit-product-form">
+                <div class="form-group mb-2">
+                    <label for="name">
+                        Tên sản phẩm
+                    </label>
+                    <input id="TenHangHoa" name="TenHangHoa" type="text" class="form-control validate" required="">
+                    @ViewBag.Message;
+                </div>
+                <div class="form-group mb-3">
+                    <label for="name">
+                        Gia
+                    </label>
+                    <input id="Gia" name="Gia"  type="text"  class="form-control validate" required="">
+
+                </div>
+                <div class="form-group mb-3">
+                    <label for="thuongHieu">
+                        Thương Hiệu
+                    </label>
+                    @Html.DropDownListFor(m => m.thuongHieu, new SelectList(Model.thuongHieu.ToList(), "MaThuongHieu", "TenThuongHieu", "Please Select Department"), new { @class = "thuongHieu form-control validate",style = "padding: 0.375rem 0.75rem !important" })
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="loaiHangHoa">
+                        Loại sản phẩm
+                    </label>
+                    @Html.DropDownListFor(m => m.loaiHangHoa, new SelectList(Model.loaiHangHoa.ToList(), "MaLoaiHang", "TenLoai", "Please Select Department"), new { @class = "loaiHangHoa form-control validate", style = "padding: 0.375rem 0.75rem !important" })
+                </div>
+
+
+                @*<div class="form-group mb-3">
+                    <label for="name">
+                        Gia
+                    </label>
+                    <input id="Gia" name="Gia" type="text" placeholder="Gia ban" class="form-control validate" required="">
+                </div>*@
+
+
+
+
+                    @*<div class="form-group mb-3">
+                <label for="description">Description</label>
+                <textarea class="form-control validate" rows="3" required=""></textarea>
+            </div>
+            <div class="form-group mb-3">
+                <label for="category">Category</label>
+                <select class="custom-select tm-select-accounts" id="category">
+                    <option selected="">Select category</option>
+                    <option value="1">New Arrival</option>
+                    <option value="2">Most Popular</option>
+                    <option value="3">Trending</option>
+                </select>
+            </div>
+            <div class="row">
+                <div class="form-group mb-3 col-xs-12 col-sm-6">
+                    <label for="expire_date">
+                        Expire Date
+                    </label>
+                    <input id="expire_date" name="expire_date" type="text" class="form-control validate hasDatepicker" data-large-mode="true">
+                </div>
+                <div class="form-group mb-3 col-xs-12 col-sm-6">
+                    <label for="stock">
+                        Units In Stock
+                    </label>
+                    <input id="stock" name="stock" type="text" class="form-control validate" required="">
+                </div>
+            </div>*@
+
+</form>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+            <div class="tm-product-img-dummy mx-auto">
+                <i class="fas fa-cloud-upload-alt tm-upload-icon" onclick="document.getElementById('fileInput').click();"></i>
+            </div>
+            <div class="custom-file mt-3 mb-3">
+                @*<input id="file" name="file" type="file" style="display:none;">
+                <input type="button" class="btn btn-primary btn-block mx-auto" value="UPLOAD PRODUCT IMAGE" 
+                    onclick="document.getElementById('file').click();">*@
+
+                <input id="file" name="file" type="file" style="display:none;">
+                <input type="button" class="btn btn-primary btn-block mx-auto" value="Thêm ảnh sản phẩm" onclick="document.getElementById('file').click();">
+            
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block text-uppercase">Thêm sản phẩm</button>
+        </div>
+    </div>
+}
+            </div>
+        </div>
+    </div>
+    <script src="~/assest/font-awe.js" crossorigin="anonymous"></script>
+    
+    <!-- $(function() {
+        $("#expire_date").datepicker();
+      });
+    </script> -->
+</body>
+</html>
+
+

@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Xác nhận</title>
+    <link href="~/reset_password/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="elelment">
+        <div class="element-main">
+            <h4 style="color:green; text-align:center"> @ViewBag.Message</h4>
+            <h3>Nhập mã nhận được từ gmail</h3>
+            @using (Html.BeginForm())
+            {
+                @Html.TextBox("CodeMail", null, new { style = "margin-top: 30px;color: black;" });
+
+                <h3>Nhập mật khẩu mới</h3>
+                @Html.TextBox("pass", null, new { style = "margin-top: 30px;color: black;" });
+
+ 
+
+                <input type="submit" value="Gửi">
+
+            }
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>

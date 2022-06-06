@@ -1,0 +1,144 @@
+﻿@model List<WebApplication1.Models.GioHang>
+@{
+    Layout = null;
+    
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    <title>Giỏ hàng</title>
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/assest/min.css" type="text/css">
+
+    <link rel="stylesheet" href="~/assest/FormCart/css/style.css" type="text/css">
+</head>
+
+<body>
+    <h2 style="text-align:center; margin-top:20px;font-size:50px">Giỏ hàng</h2>
+   @using (Html.BeginForm(@*"CapnhatGiohang", "GioHang"*@))
+   {
+    <section class="shoping-cart spad">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="shoping__product">Sán phẩm</th>
+                                    <th>Giá bán</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng tiền</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    @if (Model.Count == 0)
+                    {
+                        <h2 style="text-align:center;padding-bottom:100px">Chưa có sản phẩm nào trong giỏ hàng</h2>
+                    }
+                    else
+                    {
+
+
+
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="shoping__cart__item">
+                                    <img style="height: 150px;width: 200px" src="~/ImgSanpham/@item.Anh" alt="">
+                                    <h5>@item.TenSP</h5>
+                                </td>
+                                <td class="shoping__cart__price">
+                                     @String.Format("{0:0,0}", @item.GiaBan)
+                                </td>
+                                <td class="shoping__cart__quantity">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input type="text" value="@item.Soluong">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="shoping__cart__total">
+                                     @String.Format("{0:0,0}", @item.ThanhTien)
+                                </td>
+                                <td class="shoping__cart__item__close">
+                                    <span class="icon_close"></span>
+                                    <a href="@Url.Action("XoaGioHang", "GioHang", new { @masp = @item.MaSP, @url = Request.Url.ToString() })"><i class="fa-solid fa-2x fa-xmark"></i></a>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                    
+                                
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">@*//<input type="submit" value="Gửi">*@
+                    <div class="shoping__cart__btns">
+                        <a href="@Url.Action("Index", "Home")" class="primary-btn cart-btn"><i class="fa-solid fa-backward-step"></i>  Quay lại trang chủ</a>
+                        @*<a href="@Url.Action("CapnhatGiohang", "GioHang")" class="primary-btn cart-btn cart-btn-right">
+                            <span class="icon_loading"></span>
+                            Upadate Cart
+                        </a>*@
+                        <input @*href="@Url.Action("CapnhatGiohang", "GioHang")"*@ class="primary-btn cart-btn cart-btn-right" type="submit" value="Gửi">
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="shoping__checkout">
+                        <h5>Cart Total</h5>
+                        <ul>
+                            <li>Subtotal <span>$454.98</span></li>
+                            <li>Total <span>@String.Format("{0:0,0}", @ViewBag.TongTien)      VND</span></li>
+                        </ul>
+                        <a href="@Url.Action("DatHang", "GioHang")" class="primary-btn">Đặt hàng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+   }
+    @*<script>
+        var update = document.querySelector('.cart-btn-right');
+        update.addEventListener("click", myFunction);
+
+        function myFunction() {
+            var number = document.querySelector('input[type="text"]')[0];
+        }
+    </script>*@
+
+
+        <script src="~/assest/font-awe.js"></script>
+
+    <script src="~/assest/FormCart/JS/jquery-3.3.1.min.js"></script>
+    <!-- <script src="js/bootstrap.min.js"></script> -->
+    <script src="~/assest/FormCart/JS/jquery.nice-select.min.js"></script>
+    <script src="~/assest/FormCart/JS/jquery-ui.min.js"></script>
+    <script src="~/assest/FormCart/JS/jquery.slicknav.js"></script>
+    <!-- <script src="js/mixitup.min.js"></script> -->
+    <script src="~/assest/FormCart/JS/owl.carousel.min.js"></script>
+    <script src="~/assest/FormCart/JS/main.js"></script>
+
+
+</body>
+
+</html>

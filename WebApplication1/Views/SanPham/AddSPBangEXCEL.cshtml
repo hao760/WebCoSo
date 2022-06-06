@@ -1,0 +1,72 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+@model System.Data.DataTable
+@using System.Data;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/assest/min.css" />
+    <title>Thêm sản phẩm bằng file Excel</title>
+</head>
+<body>
+    @using (Html.BeginForm("AddSPBangEXCEL", "SanPham", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div style="margin-top:30px" class="info2">
+            <h2  >Thêm sản phẩm bằng file Excel</h2>
+            @Html.AntiForgeryToken()
+
+            <div class="form-group" name="Fichier1">
+                <!-- COMPONENT START -->
+                <div class="form-group">
+
+                </div>
+                <input type="file" id="dataFile" name="upload" />
+
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Upload" style="background-color:white;color:black" class="btn btn-default" />
+            </div>
+
+
+            <div class="alert alert-success"><span style="font-size:25px">Sản phẩm được thêm</span>
+                @Html.ValidationSummary()
+            </div>
+
+
+
+        </div>
+        if (Model != null)
+        {
+            <h3>Bạn đã thêm được @Model.Rows.Count sản phẩm</h3> 
+            @*@ViewBag.meMessage;*@
+            <table id="table1" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        @foreach (DataColumn col in Model.Columns)
+                    {
+                            <th>@col.ColumnName</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow row in Model.Rows)
+                    {
+                        <tr>
+                            @foreach (DataColumn col in Model.Columns)
+                        {
+                                <td>@row[col.ColumnName]</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+</body>
+</html>

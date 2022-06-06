@@ -1,0 +1,29 @@
+﻿@model List<WebApplication1.Models.LoaiHangHoa>
+
+
+@*<h2>Loai San pham</h2>
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        
+    }
+</div>*@
+
+<div class="hero__categories">
+    <div class="hero__categories__all">
+        <i class="fa fa-bars"></i>
+        <span>Loại sản phẩm </span>
+        <p>@Model.Count</p>
+    </div>
+    <ul>
+@foreach (var item in Model)
+{
+    <li><a style="text-decoration: none" href="@Url.Action("LaySPTheoLoai","SanPham",new { maloai = @item.MaLoaiHang})" >@item.TenLoai</a></li>
+    
+
+}
+
+    </ul>
+</div>
+
+
