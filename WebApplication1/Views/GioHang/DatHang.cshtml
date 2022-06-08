@@ -44,7 +44,7 @@
                                 <span class="icon_loading"></span>
                                 Upadate Cart
                                             </a>*@
-                            <a href="@Url.Action("Mua", "GioHang")" class="primary-btn cart-btn cart-btn-right"><i class="fa-solid fa-backward-step"></i>  Xác nhận mua</a>
+                            <a href="@Url.Action("Mua", "GioHang")" class="primary-btn cart-btn cart-btn-right"><i class="fa-solid fa-forward-step"></i>  Xác nhận mua</a>
                             @*<input href="@Url.Action("Mua", "GioHang")" class="primary-btn cart-btn cart-btn-right" value="Xác nhận mua">*@
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                                     }
                                     else
                                     {
-                                        foreach (var item in Model)//đc ko v ba
+                                        foreach (var item in Model)
                                         {
                                             <tr>
                                                 <td class="shoping__cart__item">
@@ -109,22 +109,7 @@
             </div>
         </section>
     }
-    @*@{
-            ViewModel2.
-        }
 
-        <table>
-            @using (Html.BeginForm())
-            {
-
-            @Html.ValidationSummary(false)
-            <tr style="height:40px">
-                <td>Họ tên khách hàng:</td>
-                <td style="font-weight:bold">@kh.TenKhachHang</td>
-            </tr>
-            }
-
-        </table>*@
 
 
 
@@ -132,14 +117,12 @@
 
     <script src="~/assest/font-awe.js"></script>
 
-    <script src="~/assest/FormCart/JS/jquery-3.3.1.min.js"></script>
-
+    @*<script src="~/assest/FormCart/JS/jquery-3.3.1.min.js"></script>
     <script src="~/assest/FormCart/JS/jquery.nice-select.min.js"></script>
     <script src="~/assest/FormCart/JS/jquery-ui.min.js"></script>
     <script src="~/assest/FormCart/JS/jquery.slicknav.js"></script>
-
     <script src="~/assest/FormCart/JS/owl.carousel.min.js"></script>
-    <script src="~/assest/FormCart/JS/main.js"></script>
+    <script src="~/assest/FormCart/JS/main.js"></script>*@
 
 
 </body>

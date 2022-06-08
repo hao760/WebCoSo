@@ -25,11 +25,12 @@
 </head>
 
 <body>
+
     <h2 style="text-align:center; margin-top:20px;font-size:50px">Giỏ hàng</h2>
    @using (Html.BeginForm(@*"CapnhatGiohang", "GioHang"*@))
    {
     <section class="shoping-cart spad">
-
+      
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -39,6 +40,7 @@
                                 <tr>
                                     <th class="shoping__product">Sán phẩm</th>
                                     <th>Giá bán</th>
+                                     @*<th><h2>@ViewData["DaMua"]</h2> </th>*@
                                     <th>Số lượng</th>
                                     <th>Tổng tiền</th>
                                     <th></th>
@@ -98,7 +100,7 @@
                             <span class="icon_loading"></span>
                             Upadate Cart
                         </a>*@
-                        <input @*href="@Url.Action("CapnhatGiohang", "GioHang")"*@ class="primary-btn cart-btn cart-btn-right" type="submit" value="Gửi">
+                        @*<input @*href="@Url.Action("CapnhatGiohang", "GioHang")" class="primary-btn cart-btn cart-btn-right" type="submit" value="Gửi">*@
                     </div>
                 </div>
 
@@ -106,7 +108,7 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>$454.98</span></li>
+                            <li>Đơn dàng đã đặt <span>$454.98</span></li>
                             <li>Total <span>@String.Format("{0:0,0}", @ViewBag.TongTien)      VND</span></li>
                         </ul>
                         <a href="@Url.Action("DatHang", "GioHang")" class="primary-btn">Đặt hàng</a>
@@ -129,14 +131,12 @@
 
         <script src="~/assest/font-awe.js"></script>
 
-    <script src="~/assest/FormCart/JS/jquery-3.3.1.min.js"></script>
-    <!-- <script src="js/bootstrap.min.js"></script> -->
+    @*<script src="~/assest/FormCart/JS/jquery-3.3.1.min.js"></script>
     <script src="~/assest/FormCart/JS/jquery.nice-select.min.js"></script>
     <script src="~/assest/FormCart/JS/jquery-ui.min.js"></script>
     <script src="~/assest/FormCart/JS/jquery.slicknav.js"></script>
-    <!-- <script src="js/mixitup.min.js"></script> -->
     <script src="~/assest/FormCart/JS/owl.carousel.min.js"></script>
-    <script src="~/assest/FormCart/JS/main.js"></script>
+    <script src="~/assest/FormCart/JS/main.js"></script>*@
 
 
 </body>

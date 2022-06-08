@@ -272,7 +272,7 @@
                 var quanlity = document.querySelector("p.soLuong");
                // var model = {};
                // model.masp = masp;
-               
+
                 $.ajax({
                     type: "POST",
                     url: "/GioHang/Themvaogio",//Controller
@@ -281,10 +281,13 @@
                     dataType: "json",
                     success: function (data) {
                         btn.parent().remove();
+                        //$("div i[data-id=masp]").style.display = "none";
+                       
+                       
                         //btn.style.display = "none";
                         quanlity.innerText = '('+ data.soLuong +')';
                         alert(data.Message);
-                       
+
                     },
                     error: function() {
                         alert("Error occured!!");

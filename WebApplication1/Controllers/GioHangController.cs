@@ -141,16 +141,20 @@ namespace WebApplication1.Controllers
             // Them chi tiet don hang
             foreach (var item in lstGiohang)
             {
+                HangHoa sanPhamMua = db.HangHoas.Where(s => s.MaHangHoa == item.MaSP).FirstOrDefault();
+
                 ChiTietHoaDon cthd = new ChiTietHoaDon();
                 cthd.MaHoaDon = hd.MaHoaDon;
                 cthd.MaHangHoa= item.MaSP;
                 cthd.SoLuong = item.Soluong;
+                sanPhamMua.SoLuongCon -= item.Soluong;
                 //cthd. = (decimal)item.dDongia;
                 db.ChiTietHoaDons.Add(cthd);
 
             }
             db.SaveChanges();
             Session["Giohang"] = null;
+            ViewData["DaMua"] = "Đã Mua thành công";
             return RedirectToAction("GioHang", "Giohang");
 
         }
