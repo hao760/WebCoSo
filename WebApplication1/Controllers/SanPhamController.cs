@@ -46,7 +46,9 @@ namespace WebApplication1.Controllers
                     string path = Path.Combine(Server.MapPath("~/ImgSanPham"),
                                       Path.GetFileName(file.FileName));
                     int loaiHang = Convert.ToInt32(collection["loaiHangHoa"]);
+                    int soLuong = Convert.ToInt32(collection["soLuong"]); 
                     hh.MaLoaiHang = loaiHang;
+                    hh.SoLuongCon = soLuong;
                     file.SaveAs(path);
                     hh.AnhSanPham = Path.GetFileName(file.FileName); /*Path.Combine(("ImgSanPham"),*/
                     db.HangHoas.Add(hh);
@@ -213,7 +215,6 @@ namespace WebApplication1.Controllers
 
                     {
                         ModelState.AddModelError("File", "Unable to Upload file!");
-                        
                         return View();
                     }
 

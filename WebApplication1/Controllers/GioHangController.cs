@@ -75,6 +75,16 @@ namespace WebApplication1.Controllers
             return Json(new { Message = mess, JsonRequestBehavior.AllowGet ,soLuong= soLuong1});
         }
 
+        public ActionResult UpdateSoLuong(int masp, FormCollection f)
+        {
+            List<GioHang> list = LayGioHang();
+            GioHang sanPham = list.SingleOrDefault(n => n.MaSP == masp);
+            if (sanPham != null)
+                sanPham.Soluong = int.Parse(f["SoLuong"].ToString());
+            return RedirectToAction("GioHang");
+        }
+
+
         public ActionResult XoaGioHang(int masp, string url)
         {
             List<GioHang> list = LayGioHang();
