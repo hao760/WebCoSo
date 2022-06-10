@@ -241,6 +241,7 @@
     <Compile Include="Models\TaiKhoanKhachHang.cs" />
     <Compile Include="Models\TaiKhoanNhanVien.cs" />
     <Compile Include="Models\ThuongHieu.cs" />
+    <Compile Include="Models\ViewHoaDon.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Models\ViewModel2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -334,6 +335,7 @@
     <Content Include="Views\Shared\Admin\_LayoutAdmin.cshtml" />
     <Content Include="Views\GioHang\DatHang.cshtml" />
     <Content Include="Views\Admin\DanhSachSanPham.cshtml" />
+    <Content Include="Views\NguoiDung\LichSuMua.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

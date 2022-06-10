@@ -157,9 +157,32 @@ namespace WebApplication1.Controllers
             }
         }
 
+        public ActionResult LichSuMua()
+        {
+            ViewHoaDon viewhd = new ViewHoaDon();
+            db = new Model1();
+            //viewhd.listHoaDon = db.HoaDons.Where(s => s.MaKhachHang.ToString() == emailKhachHang).ToList();
+            //List<Array> list =  viewhd.listHoaDon.();
+
+
+            //viewhd.listChiTietHoaDon = (from s in db.ChiTietHoaDons
+            //                            where list. (se)
+            //   select *}
+            //                           )
+            //ToList().Contains(from s in list
+            //                  select s.MaHoaDon).to
+
+            //viewhd.listChiTietHoaDon = db.ChiTietHoaDons.Where(list.Contains( db.ChiTietHoaDons.Select(s => s.MaHoaDon).ToArray() ));
+
+            //viewhd.listChiTietHoaDon =  db.ChiTietHoaDons.Include("HoaDons").Where(s=>s.MaHoaDon=
 
 
 
+            KhachHang tkkh = db.KhachHangs.Where(s => s.Email == emailKhachHang).FirstOrDefault();
+            List<HoaDon> hd= db.HoaDons.Where(s => s.MaKhachHang == tkkh.MaKhachHang).ToList();
+
+            return View(hd);
+    }
 
 
         public ActionResult HoSo()

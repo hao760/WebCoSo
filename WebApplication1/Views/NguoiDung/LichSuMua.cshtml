@@ -1,0 +1,53 @@
+﻿@*@model <WebApplication1.Models.ViewHoaDon>*@
+@model List<WebApplication1.Models.HoaDon>
+@{
+
+    Layout = "~/Views/Shared/_LayoutSanPham.cshtml";
+}
+
+<h2>Lịch sử mua</h2>
+<link href="~/assest/min.css" rel="stylesheet" />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Mã hóa đơn</th>
+            <th scope="col">Ngày mua</th>
+            <th scope="col">Tổng tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.MaHoaDon</th>
+                <td>@item.NgayBan</td>
+                <td>@String.Format("{0:0,0}", @item.TongTien)</td>
+            </tr>
+
+        }
+        
+       
+    </tbody>
+</table>
+
+
+
+
+
+@*<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>*@
