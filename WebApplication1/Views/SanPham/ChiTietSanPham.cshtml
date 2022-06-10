@@ -1,0 +1,113 @@
+﻿@model WebApplication1.Models.ViewHangHoavsCom
+
+@{
+    ViewBag.Title = "ChiTietSanPham";
+    Layout = "~/Views/Shared/_LayoutSanPham.cshtml";
+}
+@using CaptchaMvc.HtmlHelpers
+@using WebApplication1
+@using CaptchaMvc;
+@*@model WebApplication1.Models.Comment*@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="~/assest/min.css">
+    <link rel="stylesheet" href="~/assest/css/FormChiTietSp/CommentSP.css">
+</head>
+<body>
+    <style>
+        #CaptchaInputText{
+            padding: 15px 20px;
+            font-size: 25px;
+        }
+    </style>
+                        @foreach (var item in Model.hangHoa)
+                        {
+                        <div class="container">
+                            <div style="display: inline-block;" class=col-md-6 col-12 pb-4">
+                                <img style="width:400px;height:400px"  src="~/ImgSanpham/@item.AnhSanPham"/>
+                            </div>
+                            <div  style="display: inline-block;align-items:center" class="col-md-3 col-12 pb-4">
+                               <h2>@item.TenHangHoa</h2>
+                                <h4 style="color:black">@String.Format("{0:0,0}", @item.GiaBan)  VND </h4>
+                            </div>
+                        </div>
+                        }
+
+
+
+
+
+
+    <!-- Main Body -->
+    <section class="section-comment">
+                <div class="row">
+                    @if (Model.comMent.Count > 0)
+                    {
+                        <h1>Comments</h1>
+                        foreach (var item in Model.comMent)
+                        {
+                            <div class="container">
+                                <div class="col-sm-5 col-md-6 col-12 pb-4">
+                                   
+                                    <div style="width: 70vw" class="comment mt-4 text-justify float-left">
+                                        <img src="~/ImgSanpham/avatar.jpg" alt="" class="rounded-circle" width="40" height="40">
+                                        <h4 style="font-size: 30px ;margin-left:20px">@item.Title</h4>
+                                        <br>
+                                        <p style="font-size: 20px;margin-top:20px">@item.Comments </p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    }
+                    
+
+
+@using (Html.BeginForm())
+{
+                     @Html.ValidationSummary(true)
+                    <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+                        <form id="algin-form">
+                            <div class="form-group">
+                                <h4>Leave a comment</h4>
+                                <label for="message">Message</label>
+                                <textarea name="msg" id="" msg cols="30" rows="5" class="form-control" style="background-color: white;"></textarea>
+                            </div>
+                            @*<div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" id="fullname" class="form-control">
+                                </div>*@
+                            <div class="form-group">
+                                <label for="Title">Title</label>
+                                    <input type="text" name="Title" id="email" class="form-control">
+
+                            </div>
+                            <div class="form-group">
+                                @*<p class="text-secondary">If you have a <a href="#" class="alert-link">gravatar account</a> your address will be used to display your profile picture.</p>*@
+                                @Html.MathCaptcha()
+                            </div>
+                            
+                            <div class="form-group">
+                                <button type="submit" id="post" class="btn">Post Comment</button>
+                                
+                            </div>
+                        </form>
+                    </div>
+}
+                </div>
+           
+
+        
+
+        
+    </section>
+
+</body>
+</html>
+

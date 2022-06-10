@@ -226,7 +226,7 @@ namespace WebApplication1.Controllers
                 db.KhachHangs.Add(kh);
                 db.SaveChanges();
             }
-            return View();
+            return RedirectToAction("Index","Home");
 
         }
 

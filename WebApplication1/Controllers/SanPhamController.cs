@@ -1,4 +1,5 @@
-﻿using ExcelDataReader;
+﻿using CaptchaMvc.HtmlHelpers;
+using ExcelDataReader;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -252,6 +253,47 @@ namespace WebApplication1.Controllers
                 thieu = db.ThuongHieux.Where(s => s.TenThuongHieu.Equals(tenThuongHieu)).SingleOrDefault();
             }
             return thieu.MaThuongHieu;
+        }
+
+
+        
+        public ActionResult ChiTietSanPham(int? id)
+        {
+            db = new Model1();
+            ViewHangHoavsCom view = new ViewHangHoavsCom();
+            view.hangHoa = db.HangHoas.Where(s => s.MaHangHoa == id).ToList();
+           
+            List < Comment > list = Session["Comment"] as List<Comment>;
+            if (list == null)
+            {
+                list = new List<Comment>();
+                Session["Comment"] = list;
+                view.comMent = (List<Comment>)Session["Comment"];
+            }
+            else
+                view.comMent = (List<Comment>)Session["Comment"];
+            return View(view);
+        }
+
+        [HttpPost]
+        public ActionResult ChiTietSanPham(string empty,string Title,string msg,string id)
+        {
+            id = "5";
+            // Code for validating the CAPTCHA  
+            if (this.IsCaptchaValid("Captcha is not valid"))
+            {
+                Comment cm = new Comment();
+                cm.Title = Title;
+                cm.Comments = msg;
+                cm.Id = Convert.ToInt32(id);
+                List<Comment> list = Session["Comment"] as List<Comment>;
+                list.Add(cm);
+                Session["Comment"] = list;
+                return RedirectToAction("ChiTietSanPham");
+            }
+
+            ViewBag.ErrMessage = "Error: captcha is not valid.";
+            return RedirectToAction("ChiTietSanPham");
         }
     }
 }
