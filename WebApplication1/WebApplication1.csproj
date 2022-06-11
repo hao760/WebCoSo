@@ -250,6 +250,7 @@
     <Compile Include="Models\ViewHoaDon.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Models\ViewModel2.cs" />
+    <Compile Include="Models\ViewThongKe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -344,6 +345,7 @@
     <Content Include="Views\Admin\DanhSachSanPham.cshtml" />
     <Content Include="Views\NguoiDung\LichSuMua.cshtml" />
     <Content Include="Views\SanPham\ChiTietSanPham.cshtml" />
+    <Content Include="Views\Admin\ThongKe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

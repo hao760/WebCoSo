@@ -46,7 +46,7 @@
             @Html.DisplayFor(modelItem => item.TenHangHoa)
         </td>
         <td>
-            @*@Html.DisplayFor(modelItem => item.AnhSanPham)*@
+
             <img style="width:100px;height:100px" src="@Url.Content("~/ImgSanpham/"+item.AnhSanPham)" />
         </td>
         <td>
@@ -59,7 +59,7 @@
             @Html.DisplayFor(modelItem => item.SoLuongCon)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.GiaBan)
+            @String.Format("{0:0,0}", item.GiaBan)
         </td>
         @*<td>
             @Html.DisplayFor(modelItem => item.MaKhuyenMai)

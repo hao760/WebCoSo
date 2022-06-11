@@ -33,6 +33,27 @@ namespace WebApplication1.Controllers
             
             return RedirectToAction("DanhSachSanPham","Admin");
         }
+        public ActionResult ThongKe()
+        {
+            List<ViewThongKe> listView = new List<ViewThongKe>();
+            ViewThongKe view;
+            List<int> maKH = db.KhachHangs.Select(s => s.MaKhachHang).ToList();
+            foreach(var item in maKH)
+            {
+                view = new ViewThongKe();
+                view.email = db.KhachHangs.Where(s => s.MaKhachHang == item).Select(s=>s.Email).FirstOrDefault();
+                view.soLanMua = db.HoaDons.Where(s => s.MaKhachHang == item).Count();
+
+
+                if(view.soLanMua!=0)
+                    view.tongTien = (long)db.HoaDons.Where(s => s.MaKhachHang == item).Sum(s => s.TongTien);
+                else
+                    view.tongTien = 0;
+
+               listView.Add(view);
+            }
+            return View(listView);
+        }
 
     }
 }
