@@ -28,6 +28,8 @@
     </style>
                         @foreach (var item in Model.hangHoa)
                         {
+                            
+                            
                         <div class="container">
                             <div style="display: inline-block;" class=col-md-6 col-12 pb-4">
                                 <img style="width:400px;height:400px"  src="~/ImgSanpham/@item.AnhSanPham"/>
@@ -45,7 +47,7 @@
 
 
     <!-- Main Body -->
-    <section class="section-comment">
+    <section style="margin-top:80px" class="section-comment">
                 <div class="row">
                     @if (Model.comMent.Count > 0)
                     {
@@ -83,10 +85,9 @@
                                     <label for="name">Name</label>
                                     <input type="text" name="name" id="fullname" class="form-control">
                                 </div>*@
-                            <div class="form-group">
+                            <div style="display :none" class="form-group">
                                 <label for="Title">Title</label>
-                                    <input type="text" name="Title" id="email" class="form-control">
-
+                                    <input type="text" name="Title" value="hehe" id="email" class="form-control">
                             </div>
                             <div class="form-group">
                                 @*<p class="text-secondary">If you have a <a href="#" class="alert-link">gravatar account</a> your address will be used to display your profile picture.</p>*@

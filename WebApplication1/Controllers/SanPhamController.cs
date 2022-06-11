@@ -259,6 +259,7 @@ namespace WebApplication1.Controllers
         
         public ActionResult ChiTietSanPham(int? id)
         {
+           
             db = new Model1();
             ViewHangHoavsCom view = new ViewHangHoavsCom();
             view.hangHoa = db.HangHoas.Where(s => s.MaHangHoa == id).ToList();
@@ -278,14 +279,20 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult ChiTietSanPham(string empty,string Title,string msg,string id)
         {
-            id = "5";
+           
             // Code for validating the CAPTCHA  
             if (this.IsCaptchaValid("Captcha is not valid"))
             {
                 Comment cm = new Comment();
-                cm.Title = Title;
+                //cm.Title = Title;
+
+                TaiKhoanKhachHang temp = Session["Taikhoan"] as TaiKhoanKhachHang;
+                cm.Title = temp.Email;
+
+
+
                 cm.Comments = msg;
-                cm.Id = Convert.ToInt32(id);
+                cm.Id = 5; /*Convert.ToInt32(id);*/
                 List<Comment> list = Session["Comment"] as List<Comment>;
                 list.Add(cm);
                 Session["Comment"] = list;

@@ -15,6 +15,7 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+
         public static string eMailkhachhang="";
         public List<GioHang> LayGioHang()
         {
