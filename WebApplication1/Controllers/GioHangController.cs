@@ -55,6 +55,8 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public JsonResult Themvaogio(int masp)
         {
+            if(Session["Taikhoan"] == null)
+                    return Json(new { Message = "1", JsonRequestBehavior.AllowGet });
             string mess ;
             
             List<GioHang> list = LayGioHang();

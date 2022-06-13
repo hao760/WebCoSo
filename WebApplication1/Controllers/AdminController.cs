@@ -54,6 +54,42 @@ namespace WebApplication1.Controllers
             }
             return View(listView);
         }
+        public ActionResult DangNhap()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Dangnhap(FormCollection collection)
+        // Gần các giá trị người dùng nhập liệu cho các biến
+        {
+
+
+            var MaNhanVien = collection["MaNhanVien"];
+            var matkhau = collection["Matkhau"];
+
+
+            if (String.IsNullOrEmpty(MaNhanVien))
+               ViewData["Loil"] = "Phải nhập Ma Nhan Vien";
+            else if (String.IsNullOrEmpty(matkhau))
+                ViewData["Loi2"] = "Phải nhập mật khẩu";
+            else
+            {
+                int ma = Convert.ToInt32(MaNhanVien);
+                //Gần giá trị cho đổi tượng được tạo mới (kh)
+                TaiKhoanNhanVien kh = db.TaiKhoanNhanViens.SingleOrDefault(n => n.MaTaiKhoan == ma && n.MatKhau == matkhau);
+                if (kh != null)
+                {
+                   
+                    return RedirectToAction("DanhSachSanPham", "Admin");
+                }
+                else
+                    ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng";
+
+            }
+            return View();
+
+        }
 
     }
 }

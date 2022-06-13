@@ -279,7 +279,8 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult ChiTietSanPham(string empty,string Title,string msg,string id)
         {
-           
+            if (Session["Taikhoan"] == null)
+                return RedirectToAction("DangNhap", "NguoiDung");
             // Code for validating the CAPTCHA  
             if (this.IsCaptchaValid("Captcha is not valid"))
             {

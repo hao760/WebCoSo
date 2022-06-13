@@ -269,6 +269,9 @@
         $(function() {
             $('.fa-shopping-cart').click(function(event) {
                 event.preventDefault();
+                
+
+                
                 var btn = $(this);
                 var masp = btn.data('id');
                 var quanlity = document.querySelector("p.soLuong");
@@ -283,9 +286,13 @@
                     contentType: "application/x-www-form-urlencoded;charset=UTF-8", //   "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {
+                        if (data.Message == "1") {
+                            alert("Đăng nhập trước khi mua");
+                            return;
+                        }
+
                         btn.parent().remove();
                         //$("div i[data-id=masp]").style.display = "none";
-                       
                        
                         //btn.style.display = "none";
                         quanlity.innerText = '('+ data.soLuong +')';
