@@ -43,7 +43,8 @@
         </div>
         if (Model != null)
         {
-            <h3>Bạn đã thêm được @Model.Rows.Count sản phẩm</h3> 
+            <h4>Bạn đã thêm được @(Model.Rows.Count - Convert.ToInt32(Session["demupdate"])) sản phẩm và cập nhật  @Session["demupdate"] sản phẩm</h4> 
+           
             @*@ViewBag.meMessage;*@
             <table id="table1" class="table table-bordered table-hover">
                 <thead>

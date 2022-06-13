@@ -117,19 +117,17 @@ namespace WebApplication1.Controllers
         public ActionResult AddSPBangEXCEL(HttpPostedFileBase upload)
         {
             db = new Model1();
+            List<string> listTen = db.HangHoas.Select(s => s.TenHangHoa).ToList();
 
             if (ModelState.IsValid)
             {
-
                 if (upload != null && upload.ContentLength > 0)
                 {
                     // ExcelDataReader works with the binary Excel file, so it needs a FileStream
                     // to get started. This is how we avoid dependencies on ACE or Interop:
                     Stream stream = upload.InputStream;
-
                     IExcelDataReader reader = null;
-
-
+                    var demupdate = 0;
                     if (upload.FileName.EndsWith(".xls"))
                     {
                         reader = ExcelReaderFactory.CreateBinaryReader(stream);
@@ -165,10 +163,22 @@ namespace WebApplication1.Controllers
 
                             for (int col = 0; col < dt_.Columns.Count; col++)
                             {
+
                                 row[col] = dt_.Rows[row_][col].ToString();
                                 if (col == 0)
                                 {
                                     temp.TenHangHoa = dt_.Rows[row_][0].ToString();
+
+
+                                    if(listTen.Contains(temp.TenHangHoa)==true)
+                                    {
+                                        var tempsp = db.HangHoas.Where(s => s.TenHangHoa == temp.TenHangHoa).FirstOrDefault();
+                                        tempsp.SoLuongCon += Convert.ToInt32(dt_.Rows[row_][6]);
+                                        demupdate++;
+                                        row[6] = dt_.Rows[row_][6].ToString();
+                                        break;
+                                    }
+
                                     continue;
                                 }
                                 if (col == 1)
@@ -198,14 +208,13 @@ namespace WebApplication1.Controllers
                                 }
                                 if (col == 6)
                                 {
-                                    temp.SoLuongCon = 0;
-                                    continue;
+                                    temp.SoLuongCon = Convert.ToInt32(dt_.Rows[row_][6]);
+                                   
+                                    db.HangHoas.Add(temp);
                                 }
                             }
 
-
                             dt.Rows.Add(row);
-                            db.HangHoas.Add(temp);
                             db.SaveChanges();
 
                         }
@@ -225,6 +234,7 @@ namespace WebApplication1.Controllers
                     reader.Dispose(); ;
                     ViewBag.Message = "Sản phẩm được thêm thành công.";
                      DataTable tmp = result.Tables[0];
+                    Session["demupdate"] = demupdate;
                     Session["tmpdata"] = tmp;  //store datatable into session
                     return RedirectToAction("AddSPBangEXCEL");
                 }
