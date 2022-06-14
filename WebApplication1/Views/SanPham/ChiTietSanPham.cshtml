@@ -50,15 +50,18 @@
         <p id="songuoirate"></p>
     </div>
     <style>
-        .redd {
-            color: black;
-            background-color: yellow !important;
+        .redd{
+            color:  black;
+            background-color:yellow ;
         }
-
-        i:hover {
-            color: rgb(247, 247, 1) solid;
+         i:hover{
+            color:  rgb(247, 247, 1) ;
             background-color: rgb(243, 243, 9);
             cursor: pointer;
+        }
+        .white{
+            color:  black;
+            background-color:white ;
         }
     </style>
 
@@ -141,7 +144,7 @@
                         var x = event.target;
                         const list= document.getElementsByClassName("fa-regular");
                         for (var i = 0; i < list.length; i++){
-                            list[i].style.backgroundColor = "white !important";
+                            list[i].classList.remove("redd");
                     }
                         const previousSiblings = (elem) => {
                         let siblings = [];
@@ -153,9 +156,10 @@
                     };
                     //toogle
                         const siblings = previousSiblings(x);
-                         x.classList.add("redd");
-                        siblings.forEach(li =>li.classList.add("redd"));
-                    }
+    x.classList.remove("white");
+     x.classList.add("redd");
+    siblings.forEach(li =>li.classList.add("redd"));
+}
 
                         </script> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
