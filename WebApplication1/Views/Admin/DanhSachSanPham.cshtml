@@ -13,7 +13,7 @@
     @Html.ActionLink("Thêm bằng file Excel", "AddSPBangEXCEL", "SanPham", null, new { @class = "btn btn-success", @style = "display:inline-block;margin:50px 300px 100px 50px" })
 
 <p>Hiện đang có @ViewBag.count sản phẩm</p>
-<table  class="table  table-hover">
+<table id="thangCha"  class="table  table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.TenHangHoa)
@@ -69,8 +69,6 @@
 
             <i class="fa-solid fa-pencil"></i>
             
-            @*@Html.ActionLink("", "XoaSanPham", "Admin", new { id = item.MaHangHoa }, new { @class = "fa-solid fa-trash-can" })
-            <i class="fa-solid fa-trash-can"></i>*@
 
             <a href="@Url.Action("XoaSanPham", "Admin", new { id = item.MaHangHoa })"><i style="padding:10px" class="fa-solid fa-trash-can"></i></a>
         </td>
@@ -78,3 +76,40 @@
 }
 
 </table>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $(function() {
+            $('#thangsearch').change(function (event) {
+                event.preventDefault();
+                var t = $("#thangCha");
+                t.remove();
+
+                var btn = $(this);
+                var tuKhoa = btn.val();
+               // var model = {};
+                // model.masp = masp;
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/DanhSachSanPham",//Controller
+                    data: { tuKhoa: tuKhoa },//model,//JSON.stringify(model),//
+                    contentType: "application/x-www-form-urlencoded;charset=UTF-8", //   "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data)
+                    {
+                        //data.listSP[0].TenHangHoa;
+                        alert(data.Message.TenHangHoa);
+                        //alert(data.listSP[0].TenHangHoa);
+                       
+                    },
+                    error: function() {
+                        alert("Error occured!!");
+                    }
+                });
+            });
+        });
+    });
+</script>*@

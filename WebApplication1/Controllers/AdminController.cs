@@ -17,10 +17,20 @@ namespace WebApplication1.Controllers
         }
         public ActionResult DanhSachSanPham()
         {
+           
             var Model = db.HangHoas;
             ViewBag.count = Model.Count();
             return View(Model.ToList());
         }
+        //[HttpPost]
+        //public JsonResult DanhSachSanPham(string tuKhoa)
+        //{
+        //    db = new Model1();
+        //    HangHoa list = db.HangHoas.Where(s => s.TenHangHoa.StartsWith(tuKhoa)).FirstOrDefault();
+
+        //    //list=db.HangHoas.Where(s=>s.TenHangHoa.StartsWith(tuKhoa)).FirstOrDefault();
+        //    return Json(new { Message = list, JsonRequestBehavior.AllowGet });
+        //}
         public ActionResult XoaSanPham(int id)
         {
             var temp1 = db.ChiTietHoaDons.Where(s => s.MaHangHoa == id).FirstOrDefault();

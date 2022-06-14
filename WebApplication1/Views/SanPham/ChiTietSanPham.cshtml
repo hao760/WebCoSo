@@ -40,6 +40,32 @@
                             </div>
                         </div>
                         }
+    <div>
+        <i onClick="test()" data-id="1" class="fa-regular fa-star"></i>
+        <i onClick="test()" data-id="2" class="fa-regular fa-star x"></i>
+        <i onClick="test()" data-id="3" class="fa-regular fa-star"></i>
+        <i onClick="test()" data-id="4" class="fa-regular fa-star"></i>
+        <i onClick="test()" data-id="5" class="fa-regular fa-star"></i>
+        <p id="rate"></p>
+        <p id="songuoirate"></p>
+    </div>
+    <style>
+        .redd {
+            color: black;
+            background-color: yellow !important;
+        }
+
+        i:hover {
+            color: rgb(247, 247, 1) solid;
+            background-color: rgb(243, 243, 9);
+            cursor: pointer;
+        }
+    </style>
+
+
+
+
+
 
 
 
@@ -108,6 +134,65 @@
 
         
     </section>
+    <script>
+
+
+                    function test(){
+                        var x = event.target;
+                        const list= document.getElementsByClassName("fa-regular");
+                        for (var i = 0; i < list.length; i++){
+                            list[i].style.backgroundColor = "white !important";
+                    }
+                        const previousSiblings = (elem) => {
+                        let siblings = [];
+
+                        while (elem = elem.previousElementSibling) {
+                            siblings.push(elem);
+                        }
+                        return siblings;
+                    };
+                    //toogle
+                        const siblings = previousSiblings(x);
+                         x.classList.add("redd");
+                        siblings.forEach(li =>li.classList.add("redd"));
+                    }
+
+                        </script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+        $(function() {
+            $('.fa-regular').click(function (event) {
+                event.preventDefault();
+
+                var btn = $(this);
+                var rate = btn.data('id');
+                var btnrate = document.querySelector("p#rate");
+                var btnsongrate = document.querySelector("p#songuoirate");
+
+                $.ajax({
+                    type: "POST",
+                    url: "/SanPham/Rate",//Controller
+                    data: { rate: rate },//model,//JSON.stringify(model),//
+                    contentType: "application/x-www-form-urlencoded;charset=UTF-8", //   "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        btnsongrate.innerHTML = "Số người phản hồi " + data.songuoiRate;
+                        btnrate.innerHTML = "Bạn đã đánh giá " + data.ratecu +" sao";
+                       
+                        
+
+                    },
+                    error: function() {
+                        alert("Error occured!!");
+                    }
+                });
+            });
+        });
+    });
+    </script>
 
 </body>
 </html>

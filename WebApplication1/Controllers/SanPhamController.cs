@@ -313,5 +313,19 @@ namespace WebApplication1.Controllers
             ViewBag.ErrMessage = "Error: captcha is not valid.";
             return RedirectToAction("ChiTietSanPham");
         }
+       
+        public JsonResult Rate(int rate)
+        {
+            if (Session["Rate"] == null)
+                Session["Rate"] = 0;
+            if (Session["songuoiRate"] == null)
+                Session["songuoiRate"] = 0;
+            int songuoiRate= Convert.ToInt32(Session["songuoiRate"]);
+            songuoiRate += 1;
+            //Session["songuoiRate"] = Convert.ToInt32(songuoiRate);
+            int ratecu = Convert.ToInt32(Session["Rate"]);
+            ratecu += rate;
+            return Json(new { ratecu = ratecu, JsonRequestBehavior.AllowGet, songuoiRate = songuoiRate });
+        }
     }
 }
