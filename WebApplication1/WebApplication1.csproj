@@ -347,6 +347,7 @@
     <Content Include="Views\SanPham\ChiTietSanPham.cshtml" />
     <Content Include="Views\Admin\ThongKe.cshtml" />
     <Content Include="Views\Admin\DangNhap.cshtml" />
+    <Content Include="Views\Admin\SuaSanPham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -76,7 +76,7 @@
                                     @String.Format("{0:0,0}", @item.ThanhTien)
                                 </td>
                                 <td >
-                                    <i class="fa-solid fa-wrench"></i>
+                                    @*<i class="fa-solid fa-wrench"></i>*@
                                     <input  type="submit" value="Thay đổi số lượng"/>
                                 </td>
             }
@@ -108,8 +108,8 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Đơn dàng đã đặt <span>$454.98</span></li>
-                            <li>Total <span>@String.Format("{0:0,0}", @ViewBag.TongTien)      VND</span></li>
+                            @*<li>Đơn dàng đã đặt <span>$454.98</span></li>*@
+                            <li>Tổng tiền : <span>@String.Format("{0:0,0}", @ViewBag.TongTien)      VND</span></li>
                         </ul>
                         <a href="@Url.Action("DatHang", "GioHang")" class="primary-btn">Đặt hàng</a>
                     </div>

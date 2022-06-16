@@ -322,7 +322,7 @@ namespace WebApplication1.Controllers
                 Session["songuoiRate"] = 0;
             int songuoiRate= Convert.ToInt32(Session["songuoiRate"]);
             songuoiRate += 1;
-            //Session["songuoiRate"] = Convert.ToInt32(songuoiRate);
+            Session["songuoiRate"] = Convert.ToInt32(songuoiRate);
             int ratecu = Convert.ToInt32(Session["Rate"]);
             ratecu += rate;
             return Json(new { ratecu = ratecu, JsonRequestBehavior.AllowGet, songuoiRate = songuoiRate });

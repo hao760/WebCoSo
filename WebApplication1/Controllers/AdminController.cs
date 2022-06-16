@@ -43,6 +43,39 @@ namespace WebApplication1.Controllers
             
             return RedirectToAction("DanhSachSanPham","Admin");
         }
+
+
+        public ActionResult SuaSanPham(int id)
+        {
+            var temp = db.HangHoas.Where(s => s.MaHangHoa == id).FirstOrDefault();
+
+            return View(temp);
+        }
+        [HttpPost]
+        public ActionResult SuaSanPham(FormCollection f)
+        {
+            db = new Model1();
+            int ma = Convert.ToInt32(f["MaHangHoa"]);
+            String ten = f["TenHangHoa"];
+            var soluong = f["SoLuongCon"];
+            var thuongHieu = f["MaThuongHieu"];
+            var loaiHang = f["MaLoaiHang"];
+            var gia = Convert.ToDecimal(f["GiaBan"]);
+            var temp = db.HangHoas.Where(s => s.MaHangHoa == ma).FirstOrDefault();
+            if (temp != null)
+            {
+                temp.GiaBan = Convert.ToInt32(gia);
+                temp.MaLoaiHang = Convert.ToInt32(loaiHang);
+                temp.TenHangHoa = ten;
+                temp.MaThuongHieu = Convert.ToInt32(thuongHieu);
+                temp.SoLuongCon = Convert.ToInt32(soluong);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("DanhSachSanPham", "Admin");
+        }
+
+
         public ActionResult ThongKe()
         {
             List<ViewThongKe> listView = new List<ViewThongKe>();
