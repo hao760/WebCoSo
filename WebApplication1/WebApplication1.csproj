@@ -251,6 +251,7 @@
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Models\ViewModel2.cs" />
     <Compile Include="Models\ViewThongKe.cs" />
+    <Compile Include="Models\ViewThongKe2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -348,6 +349,7 @@
     <Content Include="Views\Admin\ThongKe.cshtml" />
     <Content Include="Views\Admin\DangNhap.cshtml" />
     <Content Include="Views\Admin\SuaSanPham.cshtml" />
+    <Content Include="Views\Admin\ThongKeTheoSanPham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

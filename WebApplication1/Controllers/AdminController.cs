@@ -97,6 +97,32 @@ namespace WebApplication1.Controllers
             }
             return View(listView);
         }
+
+        public ActionResult ThongKeTheoSanPham()
+        {
+            List<ViewThongKe2> listTemp = new List<ViewThongKe2>();
+           
+            db = new Model1();
+            var listID = db.HangHoas.Select(s => s.MaHangHoa).ToList();
+            foreach(var item in listID)
+            {
+                ViewThongKe2 temp = new ViewThongKe2();
+                temp.tenHangHoa = db.HangHoas.Where(s => s.MaHangHoa == item).Select(s => s.TenHangHoa).FirstOrDefault();
+                var giaban = db.HangHoas.Where(s => s.MaHangHoa == item).Select(s => s.GiaBan).FirstOrDefault();
+
+                ChiTietHoaDon tonTai= db.ChiTietHoaDons.Where(s => s.MaHangHoa == item).FirstOrDefault();
+                temp.soLuongBan = 0;
+                if (tonTai!=null)
+                    temp.soLuongBan = db.ChiTietHoaDons.Where(s => s.MaHangHoa == item).Sum(s => s.SoLuong);
+                   
+                temp.tongTien = Convert.ToInt32(giaban * temp.soLuongBan);
+                listTemp.Add(temp);
+            }
+            return View(listTemp);
+        }
+
+
+
         public ActionResult DangNhap()
         {
             return View();

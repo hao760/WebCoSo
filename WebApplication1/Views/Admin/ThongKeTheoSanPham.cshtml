@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplication1.Models.ViewThongKe2>
+
+@{
+    ViewBag.Title = "ThongKeTheoSanPham";
+    Layout = "~/Views/Shared/Admin/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center;margin-top: 50px;">Thống kê theo sản phẩm</h2>
+
+
+<table style="margin-top: 50px;" class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tenHangHoa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soLuongBan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tongTien)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tenHangHoa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soLuongBan)
+        </td>
+        <td>
+            @String.Format("{0:0,0}", item.tongTien)
+        </td>
+       
+    </tr>
+}
+
+</table>
