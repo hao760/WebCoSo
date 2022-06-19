@@ -350,6 +350,7 @@
     <Content Include="Views\Admin\DangNhap.cshtml" />
     <Content Include="Views\Admin\SuaSanPham.cshtml" />
     <Content Include="Views\Admin\ThongKeTheoSanPham.cshtml" />
+    <Content Include="Views\Admin\TimKiem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -159,6 +159,12 @@ namespace WebApplication1.Controllers
             return View();
 
         }
+        public ActionResult TimKiem(string thangsearch)
+        {
+            db = new Model1();
+            var listSP = db.HangHoas.Where(s => s.TenHangHoa.Contains(thangsearch)).ToList();
+            return View(listSP);
+        }
 
     }
 }
