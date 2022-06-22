@@ -117,7 +117,7 @@ namespace WebApplication1.Controllers
                 smtp.Host = "smtp.gmail.com";
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
-                NetworkCredential nc = new NetworkCredential("qhao74155@gmail.com", "1luongquochao");
+                NetworkCredential nc = new NetworkCredential("qhao74155@gmail.com", "lrdnnzzvqimjozjd");
                 smtp.UseDefaultCredentials = true;
                 smtp.Credentials = nc;
                 smtp.Send(mm);
