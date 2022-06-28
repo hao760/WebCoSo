@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using OfficeOpenXml;
+
 
 namespace WebApplication1.Controllers
 {
@@ -29,6 +31,49 @@ namespace WebApplication1.Controllers
 
             return list;
         }
+
+        public void ExportToExcel()
+        {
+            List<GioHang> emplist = Session["GioHang"] as List<GioHang>;
+
+
+            ExcelPackage pck = new ExcelPackage();
+            ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Report");
+
+            
+
+            ws.Cells["A2"].Value = "Hóa đơn:";
+            ws.Cells["B2"].Value = string.Format("{0:dd MMMM yyyy} at {0:H: mm tt}", DateTimeOffset.Now);
+
+            ws.Cells["A5"].Value = "Mã sản phẩm";
+            ws.Cells["B5"].Value = "Tên sản phẩm";
+            ws.Cells["C5"].Value = "Soluong";
+            ws.Cells["D5"].Value = "Giá bán VND";
+            ws.Cells["E5"].Value = "Thành tiền";
+
+            int rowStart = 6;
+            foreach (var item in emplist)
+            {
+
+                ws.Cells[string.Format("A{0}", rowStart)].Value = item.MaSP;
+                ws.Cells[string.Format("B{0}", rowStart)].Value = item.TenSP;
+                ws.Cells[string.Format("C{0}", rowStart)].Value = item.Soluong;
+                ws.Cells[string.Format("D{0}", rowStart)].Value = item.GiaBan;
+                ws.Cells[string.Format("E{0}", rowStart)].Value = item.ThanhTien;
+                rowStart++;
+            }
+
+            ws.Cells["A:AZ"].AutoFitColumns();
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment: filename=" + "ExcelReport.xlsx");
+            Response.BinaryWrite(pck.GetAsByteArray());
+            Response.End();
+
+        }
+
+
+
         public double TinhTongTien()
         {
             List<GioHang> list = Session["GioHang"] as List<GioHang>;
@@ -139,10 +184,10 @@ namespace WebApplication1.Controllers
         {
             if (Session["GioHang"] == null)
                 RedirectToAction("Index", "Home");
-            //eMailkhachhang = Session["user"] as string;
 
             HoaDon hd =new HoaDon();
-            KhachHang kh = db.KhachHangs.Where(s => s.Email == eMailkhachhang).FirstOrDefault();
+            string aa = Session["user"] as string;
+            KhachHang kh = db.KhachHangs.Where(s => s.Email == aa).FirstOrDefault();
             List<GioHang> lstGiohang = LayGioHang();
             hd.MaKhachHang= kh.MaKhachHang;
             hd.NgayBan= DateTime.Now;
